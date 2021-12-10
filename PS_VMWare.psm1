@@ -8,13 +8,28 @@
     CREATION DATE: 02-December-2021
 #>
 
-$PublicFunctionFiles = [System.IO.Path]::Combine($PSScriptRoot,"Functions","Public","*.ps1")
+#Dot Source all .ps1 files located within the public folder in the module.
+$PublicFunctionFiles = [System.IO.Path]::Combine($PSScriptRoot, "Functions", "Public", "*.ps1")
 
 Get-ChildItem -Path $PublicFunctionFiles |
-    ForEach-Object {
-        Try {
-            . $_.FullName
-        } Catch {
-            Write-Warning "$($_.Exception.Message)"
-        }
+ForEach-Object {
+    Try {
+        . $_.FullName
     }
+    Catch {
+        Write-Warning "$($_.Exception.Message)"
+    }
+}
+
+#Dot Source all .ps1 files located within the private folder in the module, making these available to the module but not the end user.
+$PrivateFunctionFiles = [System.IO.Path]::Combine($PSScriptRoot, "Functions", "Private", "*.ps1")
+
+Get-ChildItem -Path $PrivateFunctionFiles |
+ForEach-Object {
+    Try {
+        . $_.FullName
+    }
+    Catch {
+        Write-Warning "$($_.Exception.Message)"
+    }
+}
