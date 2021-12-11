@@ -27,6 +27,7 @@ Function VMWare.Connect-vCenter {
         [Parameter()]$ServerName = '10.20.105.247'
     )
     Begin {
+        $ErrorActionPreference = 'Stop'
         Write-Host "[-] Attempting Connection to $ServerName" -ForegroundColor Cyan
         $Script:VIServerCredentials = Get-Credential
     }
