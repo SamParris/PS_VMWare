@@ -1,12 +1,39 @@
+#Region VMWare.Create-VM
+
 <#
 .SYNOPSIS
-    Creates a new VM.
+    Creates a new VM on an ESXi Host.
 .DESCRIPTION
-    This function creates a new VM within the vCenter.
+    This function will create a new VM on the connected VMWare ESXi Host.
+    Unless specified using the parameters the VM will have the following specs;
+        - 4GB Memory
+        - 2vCPUs
+        - All Cores in a single socket
+
+    You can have the VM auto Power On and if the VMWare Remote Tool is installed Auto Connect.
+.PARAMETER NewVMName
+    Mandatory Parameter - New VM Name.
+.PARAMETER MemoryGB
+    Default 4GB - Required amount of memory for VM.
+.PARAMETER NumCPU
+    Default 2 - Required vCPUs
+.PARAMETER CoresPerSocket
+    Default matching $NumCPU Parameter - Specified number of cores per CPU Socket.
+.PARAMETER PowerOn
+    If specified the VM will turn on automatically after being created.
+.PARAMETER Connect
+    If specified alon with the -PowerOn parameter, the VM will attempt to use the VMWare Remote Tools to connect to the new VM.
+.EXAMPLE
+    VMWare.VMWare.Create-VM -NewVMName 'MY_NEW_VM'
+
+    Description
+    -----------
+    This function will create a default VM on the connected ESXi host with the name 'MY_NEW_VM' and the default parameters.
 .NOTES
     AUTHOR: Sam Parris
-    CREATION DATE: 01-December-2021
+    CREATION DATE: 10-December-2021
 #>
+
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseApprovedVerbs", "")]
 param()
 
@@ -81,3 +108,5 @@ Function VMWare.Create-VM {
     }
 }
 ##TODO: Add PRTG hook to create sensors from VM
+
+#EndRegion VMWare.Create-VM

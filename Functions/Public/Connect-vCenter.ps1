@@ -51,3 +51,5 @@ Function VMWare.Connect-vCenter {
         }
     }
 }
+
+#EndRegion VMWare.Connect-vCenter

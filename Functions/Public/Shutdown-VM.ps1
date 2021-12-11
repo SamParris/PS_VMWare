@@ -103,3 +103,5 @@ Function VMWare.Shutdown-VM {
         }
     }
 }
+
+#EndRegion VMWare.Shutdown-VM

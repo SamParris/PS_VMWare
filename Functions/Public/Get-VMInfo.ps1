@@ -1,12 +1,40 @@
+#Region VMWare.Get-VMInfo
+
 <#
 .SYNOPSIS
-    Gets all current VMs within the connected vCenter.
+    Gets basic information on VMs on the connected ESXi Host.
 .DESCRIPTION
+    This function will collect and display the basic information on the specified VMs on the connected ESXi Host.
+    It can collect information on the following;
+        - All Powered On VMs
+        - All Powered Off VMs
+        - All VMs
+.PARAMETER PoweredOn
+    Only collect and display information on all currently powered on vms.
+.PARAMETER PoweredOff
+    Only collect and display information on all currently powered off vms.
+.EXAMPLE
+    VMWare.Get-VMInfo -PoweredOn
 
+    Description
+    -----------
+    This function will collect and display the following information for all currently powered on VMs.
+
+    Name   vCPU   MemoryGB   CapacityGB   FreeSpaceGB   VMWareTools
+
+.EXAMPLE
+    VMWare.Get-VMInfo
+
+    Description
+    -----------
+    This function will collect and display the following information for all VMs.
+
+    Name   PowerState   vCPU   MemoryGB   CapacityGB   FreeSpaceGB   VMWareTools
 .NOTES
     AUTHOR: Sam Parris
     CREATION DATE: 07-December-2021
 #>
+
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseApprovedVerbs", "")]
 param()
 
@@ -134,3 +162,5 @@ Function VMWare.Get-VMInfo {
         }
     }
 }
+
+#EndRegion VMWare.Get-VMInfo
