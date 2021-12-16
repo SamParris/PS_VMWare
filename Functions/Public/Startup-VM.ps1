@@ -59,7 +59,7 @@ Function VMWare.Startup-VM {
                 Write-Host "[+] $VM has been started" -ForegroundColor Green
             }
         }
-        ElseIf ($CompleteShutdown.IsPresent) {
+        ElseIf ($CompleteStartup.IsPresent) {
             Try {
                 Write-Host "[-] Retrieving VM Information" -ForegroundColor Cyan
                 $PoweredOffVM = Get-VM | Where-Object { $_.PowerState -eq 'PoweredOff' }
