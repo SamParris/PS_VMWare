@@ -56,8 +56,8 @@ Function VMWare.Shutdown-VM {
                     Write-Error "[X] $($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)."
                 }
                 Write-Host " Complete" -ForegroundColor DarkGray
+                Write-Host "[+] $VM has been shutdown" -ForegroundColor Green
             }
-            Write-Host "[+] $VM has been shutdown" -ForegroundColor Green
         }
         ElseIf ($CompleteShutdown.IsPresent) {
             Try {
